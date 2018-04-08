@@ -1,0 +1,35 @@
+{
+  "name": "microservices-assignment_4",
+  "version": "1.0.0",
+  "description": "microservices app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinoodpersad/COMP308-w2018-asn4.git"
+  },
+  "keywords": [
+    "microservices"
+  ],
+  "author": "Vinood Persad, Kevin Ma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinoodpersad/COMP308-w2018-asn4/issues"
+  },
+  "homepage": "https://github.com/vinoodpersad/COMP308-w2018-asn4#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "debug": "^2.6.3",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.1",
+    "seneca": "^3.3.0",
+    "seneca-entity": "^2.0.0",
+    "seneca-mongo-store": "1.1.0",
+    "seneca-web": "^2.0.0",
+    "seneca-web-adapter-express": "^1.0.2",
+    "type-is": "^1.6.14"
+  }
+}
