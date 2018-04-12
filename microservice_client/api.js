@@ -1,11 +1,12 @@
 //
-module.exports = function data_api(options) {
+module.exports = function api(options) {
     const seneca = this;
     //action names
     // 2018.04.11 - 22:05:33 - added remove functionaltiy
-    const valid_ops = { add: 'add', fetch: 'fetch', remove: 'remove' }
+    // 2018.04.12 - 01:37:21 - add update operation
+    const valid_ops = { add: 'add', fetch: 'fetch', remove: 'remove', update: 'update' }
     //define the action
-    seneca.add('role:data_api,path:accesstype', function (msg, respond) {
+    seneca.add('role:api,path:items', function (msg, respond) {
         //query the request to extract the values of fields for an item
         const id = msg.args.query.id;
         const name = msg.args.query.name;
@@ -36,14 +37,14 @@ module.exports = function data_api(options) {
     //  })
 
     //initializing plugin
-    seneca.add('init:data_api', function (msg, respond) {
+    seneca.add('init:api', function (msg, respond) {
         //make a call to the pattern role:web, and define the property routes
         this.act('role:web', {
             routes: {
-                prefix: '/data_api', //the URL prefix
-                pin: 'role:data_api,path:*', //the set of patterns to map
+                prefix: '/api', //the URL prefix
+                pin: 'role:api,path:*', //the set of patterns to map
                 map: { //the list of pin wildcard property values to use as URL endpoints.
-                    accesstype: { GET: true, suffix: '/:operation' }
+                    items: { GET: true, suffix: '/:operation' }
                 }
             }
         }, respond)

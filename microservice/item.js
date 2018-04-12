@@ -19,6 +19,20 @@ module.exports = function item(options) {
             respond(err, items.data$(false));
         });
     });
+    // update
+    seneca.add('role:item, cmd:update', function add(msg, respond) {
+        //create the record object
+        let items = seneca.make("items");
+        //populate the data fields
+        items.id = msg.id;
+        items.name = msg.name;
+        items.price = msg.price;
+        items.description = msg.description;
+        //save the record
+        items.save$(function (err, item) {
+            respond(err, items.data$(false));
+        });
+    });
     //define an action pattern to remove an item by name
     seneca.add('role:item, cmd:remove', function remove(msg, respond) {
         console.log('in remove action');
