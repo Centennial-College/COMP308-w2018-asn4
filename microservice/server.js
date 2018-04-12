@@ -7,6 +7,6 @@ require('seneca')()
         host: '127.0.0.1', //localhost
         port: 27017
     })
-    // listen for role:math messages
+    // listen for role:item messages
     // IMPORTANT: must match client
     .listen({ type: 'tcp', pin: 'role:item' })

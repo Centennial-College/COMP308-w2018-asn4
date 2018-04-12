@@ -1,27 +1,28 @@
 //
 module.exports = function data_api(options) {
-    var seneca = this;
+    const seneca = this;
     //action names
-    var valid_ops = { add: 'add', fetch: 'fetch' }
+    // 2018.04.11 - 22:05:33 - added remove functionaltiy
+    const valid_ops = { add: 'add', fetch: 'fetch', remove: 'remove' }
     //define the action
     seneca.add('role:data_api,path:accesstype', function (msg, respond) {
         //query the request to extract the values of fields for an item
-        var id = msg.args.query.id;
-        var name = msg.args.query.name;
-        var price = msg.args.query.price;
-        var description = msg.args.query.description;
+        const id = msg.args.query.id;
+        const name = msg.args.query.name;
+        const price = msg.args.query.price;
+        const description = msg.args.query.description;
         //
         console.log('name ' + name);
         //The inbound message should have the property operation
         //that specifies the access type to perform: add or fetch.
-        var operation = msg.args.params.operation
+        const operation = msg.args.params.operation
         //
         console.log('operation: ' + operation)
-        
+
         //build up the message both from a string (in this case 'role:item'), and an object
         seneca.act('role:item', {
             cmd: valid_ops[operation],
-	    id: id,
+            id: id,
             name: name,
             price: price,
             description: description
@@ -42,7 +43,7 @@ module.exports = function data_api(options) {
                 prefix: '/data_api', //the URL prefix
                 pin: 'role:data_api,path:*', //the set of patterns to map
                 map: { //the list of pin wildcard property values to use as URL endpoints.
-                    accesstype: { GET: true , suffix: '/:operation' }
+                    accesstype: { GET: true, suffix: '/:operation' }
                 }
             }
         }, respond)
