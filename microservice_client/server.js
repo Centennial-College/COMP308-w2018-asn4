@@ -33,7 +33,8 @@ seneca
     .use(SenecaWeb, senecaWebConfig)
     .use('entity')
     .use('api')
-    .client({ type: 'tcp', pin: 'role:item' })
+    // .client({ type: 'tcp', pin: 'role:item' })
+    .client({ host: 'microservice', type: 'tcp', pin: 'role:item' })
 
 // 2018.04.11 - 22:07:19 - test microservice using code
 // seneca.act({ role: 'item', cmd: 'add', id: "20", name: "usb", price: 2.99, description: "nice one" }, function (err, result) {

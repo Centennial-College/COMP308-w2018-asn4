@@ -1,0 +1,21 @@
+version: '3'
+services: 
+  mongo:
+    container_name: mongodb
+    image: mongo
+    volumes: 
+      - /data/db:/data/db
+    ports:
+      - 27017:27017
+  microservice:
+    container_name: comp308-w2018-asn4-microservice
+    build: ./microservice
+    depends_on: 
+      - mongo
+  app:
+    container_name: comp308-w2018-asn4-app
+    build: ./microservice_client
+    ports: 
+      - 3000:3000
+    depends_on: 
+      - microservice
